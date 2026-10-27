@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina inicial</title>
+    
+    <link rel="stylesheet" href="bootStrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style_inicial.css">
+    
+
+</head>
+<body>
+
+    <header class="bg-dark text-white py-4 shadow-sm">
+        <div class="container">
+
+            <h2 class="navbar-brand text-white fw-bold mb-1">
+                Pizza Peso
+            </h2>
+
+            <p class="mb-0">
+                Fichas técnicas e gramaturas
+            </p>
+
+        </div>
+    </header>
+
+    <div class="card mx-auto mt-4 mb-4" style="max-width: 500px;">
+
+        <div class="card-body">
+
+            <h4 class="card-title mb-3">Cadastrar Pizza</h4>
+
+            <div class="mb-2">
+                <label class="form-label" for="">Sabor: </label>
+                <input id="sabor" class="form-control mb-3" type="text" placeholder="digite o sabor...">
+
+                <button class="btn btn-primary w-100" id="botao_cadastrar">cadastrar sabor</button>
+                
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" for="ingrediente">Ingrediente: </label>
+                <input id="ingrediente" class="form-control mb-2" type="text" placeholder="digite os ingredientes...">
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" for="gramatura">Gramatura: </label>
+                <input id="gramatura" class="form-control mb-2" type="number" placeholder="digite a gramatura...">
+            </div>
+
+            <button class="btn btn-primary w-100 mb-2" id="botao_adicionar_ingrediente">
+                Adicionar Ingrediente
+            </button>
+
+            <button class="btn btn-success w-100 mb-2" id="botao_salvar">
+                Salvar dados
+            </button>
+
+        <!--SESSÃO QUE MOSTRA O SABOR CADASTRADO NA JANELA-->
+        <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+            <div id="notificacaoSabor" class="toast" role="alert" aria-live="polite" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Cadastrar Sabor</strong>
+                    <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="toast"
+                    aria-label="Fechar"></button>
+                </div>
+
+                <div class="toast-body" id="mensagemSabor">
+                    Sabor Cadastrado com sucesso!
+                </div>
+            </div>
+        </div>        
+    
+            <div id="lista"></div>
+        </div>
+
+    </div>
+
+    <!--SESSÃO QUE MOSTRA O INGREDIENTE CADASTRADO NA JANELA-->
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+        <div id="notificacaoIngrediente"
+            class="toast w-100"
+            style="max-width: 300px;"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true">
+
+            <div class="toast-header">
+                <strong class="me-auto">Ficha Técnica</strong>
+                <button type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Fechar"></button>
+
+            </div>
+
+            <div class="toast-body" id="mensagemIngrediente"></div>
+        </div>
+    </div>
+
+    <script src="inicial_script.js"></script>
+    <script src="bootStrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
