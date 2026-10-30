@@ -79,6 +79,7 @@ botao_cadastro.addEventListener('click', function(){
 
     produtoAtual = {
         sabor: nomeSabor,
+        imagem: "",
         ingrediente: []
     }
 
@@ -138,9 +139,15 @@ function excluirItem(indexProduto, indexIngrediente){
 
 function salvarProduto(index){
 
+    const imagem = document.querySelector(`[data-produto-index="${index}"].nova-imagem`)
+
     const card = lista.querySelector(`[data-produto-index="${index}"]`)
 
-    const novoSabor = lista.querySelector(`[data-campo="sabor"]`).value;
+    const arquivoImagem = imagem.files[0];
+
+    console.log(arquivoImagem);
+
+    const novoSabor = card.querySelector(`[data-campo="sabor"]`).value;
 
     produtosSalvos[index].sabor = novoSabor;
 
@@ -153,11 +160,33 @@ function salvarProduto(index){
         produtosSalvos[index].ingrediente[aux].gramatura = gramaturas[aux].value
     })
 
-    localStorage.setItem("produtos",JSON.stringify(produtosSalvos))
+    if(arquivoImagem){
+        const leitor = new FileReader();
 
-    produtoEditando = null
+        leitor.onload = function(event){
 
-    mostrarProdutos()
+            produtosSalvos[index].imagem = event.target.result;
+
+            localStorage.setItem("produtos", JSON.stringify(produtosSalvos))
+
+            produtoEditando = null
+
+
+            mostrarProdutos()
+        
+        }
+
+        leitor.readAsDataURL(arquivoImagem)
+
+    }else{
+
+        localStorage.setItem("produtos",JSON.stringify(produtosSalvos))
+
+        produtoEditando = null
+
+        mostrarProdutos()
+
+    }
 
 }
 
@@ -291,6 +320,14 @@ function mostrarProdutos(){
 
             <div class="card">
                 <div class="card-body" data-produto-index="${index}">
+
+                <label class="form-label"> Foto da Pizza: </label>
+                    <input 
+                        type="file"
+                        data-produto-index="${index}"
+                        class="form-control mb-2 nova-imagem"
+                        accept="image/*">
+
                 <label class="form-label">Sabor da pizza: </label>
                     <input 
                         class="form-control mb-2" 
@@ -319,6 +356,11 @@ function mostrarProdutos(){
             <div class="card mb-3 mx-auto" style="max-width: 500px;">
 
                 <div class="card-body">
+
+                <img src="${produto.imagem || ''}"    
+                     class="img-fluid rounded mb-3"
+                     alt="Foto da pizza">
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-title mb-0">${produto.sabor}</h5>
 
