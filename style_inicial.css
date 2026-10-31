@@ -59,3 +59,65 @@ h1 {
     box-shadow: 0 0 0 0.25rem rgba(49, 238, 15, 0.25);
 }
 
+/*.imagem-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imagem-container img {
+    max-width: 250px;
+    border-radius: 10px;
+}
+
+.btn-excluir-imagem {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.imagem-container:hover .btn-excluir-imagem {
+    opacity: 1;
+}
+    
+ISSO É JAVASCRIPT!!!
+
+imagemHTML += `
+    ${produto.imagem ? `
+        <div class="imagem-container mb-3">
+
+            <img
+                src="${produto.imagem}"
+                class="img-fluid rounded"
+                alt="Foto da pizza">
+
+            <button
+                class="btn-excluir-imagem"
+                onclick="excluirImagem(${index})"
+                title="Excluir imagem">
+                <i class="bi bi-trash"></i>
+            </button>
+
+        </div>
+    ` : ""}
+`;*/
+

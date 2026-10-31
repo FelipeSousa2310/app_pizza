@@ -135,6 +135,17 @@ function excluirItem(indexProduto, indexIngrediente){
 
 }
 
+function excluirImagem(index, arquivoImagem){
+
+    produtosSalvos[index].imagem = null
+
+    localStorage.setItem("produtos", JSON.stringify(produtosSalvos))
+    
+
+    mostrarProdutos();
+
+}
+
 //TENTAR ENTENDER CADA ETAPA DESSA FUNÇÃO!!!!!
 
 function salvarProduto(index){
@@ -270,8 +281,27 @@ function mostrarProdutos(){
 
     produtosSalvos.forEach(function(produto, index) {
 
+        let imagemHTML = ""
         let ingredienteHTML = ""
         let ingredienteEditar = ""
+
+        imagemHTML += `
+        
+        ${produto.imagem ? `
+            <div class=" position-relative text-center mb-3">
+                <img
+                    src="${produto.imagem}"
+                    class="img-fluid rounded mb-3"
+                    style="max-width: 250px;"
+                    alt="Foto da pizza">
+
+                <button
+                    class="btn btn-outline-danger btn-sm position-absolute top-0 end-0"
+                    onclick="excluirImagem(${index})">
+                    X
+                </button>
+            </div>` : ""
+        } `;
 
         produto.ingrediente.forEach(function(item, aux){
 
@@ -357,9 +387,7 @@ function mostrarProdutos(){
 
                 <div class="card-body">
 
-                <img src="${produto.imagem || ''}"    
-                     class="img-fluid rounded mb-3"
-                     alt="Foto da pizza">
+                
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-title mb-0">${produto.sabor}</h5>
@@ -396,6 +424,8 @@ function mostrarProdutos(){
                     <button class="btn btn-secondary mb-2" onclick="cancelar(${index})"> 
                         Cancelar 
                     </button>
+
+                    ${imagemHTML}
 
                     <div id="novosIngredientes-${index}"></div>
 
